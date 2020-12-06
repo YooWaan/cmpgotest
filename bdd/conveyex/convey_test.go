@@ -36,8 +36,8 @@ func TestSute(t *testing.T) {
 
 	Convey("TestSuite", t, func() {
 
-		Convey("logic test ===> usecase test", func() {
-			Convey("Hello Usecase", func() {
+		Convey("logic test ===> unit test", func() {
+			Convey("Hello application", func() {
 				So(app.Hello(ctx), ShouldEqual, "Hello")
 			})
 		})

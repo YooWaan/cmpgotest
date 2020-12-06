@@ -2,7 +2,6 @@ package ginkgoex
 
 import (
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 
@@ -16,16 +15,16 @@ import (
 
 var _ = Describe("BDD", func() {
 
-	Describe("BDD Test", func() {
+	Describe("BDD Test Compare", func() {
 		Context("logic test ===> unit test", func() {
-			It("Hello usecase", func() {
+			It("Hello application", func() {
 				Expect(app.Hello(testContext)).To(Equal("Hello"))
 			})
 		})
 
 		Context("endpoint test ===> integration test", func() {
 			It("GET", func() {
-				req := httptest.NewRequest(http.MethodGet, serverURL + "/", nil)
+				req := httptest.NewRequest(http.MethodGet, serverURL+"/", nil)
 				w := httptest.NewRecorder()
 				testHandler.ServeHTTP(w, req)
 
@@ -38,7 +37,7 @@ var _ = Describe("BDD", func() {
 			})
 
 			It("POST", func() {
-				req := httptest.NewRequest(http.MethodPost, serverURL + "/", strings.NewReader("{}"))
+				req := httptest.NewRequest(http.MethodPost, serverURL+"/", strings.NewReader("{}"))
 				w := httptest.NewRecorder()
 				testHandler.ServeHTTP(w, req)
 
@@ -48,7 +47,6 @@ var _ = Describe("BDD", func() {
 				Expect(err).ShouldNot(HaveOccurred())
 				_ = res.Body.Close()
 
-				log.Printf("Ret:%s", string(body))
 				Expect(string(body)).To(Equal(`{"value":"Hello"}`))
 			})
 		})
@@ -73,7 +71,6 @@ var _ = Describe("BDD", func() {
 				Expect(err).ShouldNot(HaveOccurred())
 				_ = res.Body.Close()
 
-				log.Printf("Ret:%s", string(body))
 				Expect(string(body)).To(Equal(`{"value":"Hello"}`))
 			})
 		})
